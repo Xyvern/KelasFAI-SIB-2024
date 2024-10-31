@@ -31,7 +31,8 @@ Route::get('/getsession', [SiteController::class, 'getSession']);
 
 Route::prefix('admin')->group(function () {
     Route::get('/barang', [BarangController::class, 'index'])->name('barang');
+    Route::get('/barang/update/{id}', [BarangController::class, 'update'])->name('barang.update');
     Route::post('/barang', [BarangController::class, 'insert'])->name('barang.insert');
-    Route::put('/barang/{id}', [BarangController::class, 'update'])->name('barang.update');
+    Route::put('/barang/{id}', [BarangController::class, 'doUpdate'])->name('barang.doUpdate');
     Route::delete('/barang/{id}/{stat}', [BarangController::class, 'delete'])->name('barang.delete');
 });
