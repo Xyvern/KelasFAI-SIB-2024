@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,9 +31,18 @@ Route::get('/getsession', [SiteController::class, 'getSession']);
 // Route::patch('/barang', [BarangController::class, 'delete'])->name('barang.insert');
 
 Route::prefix('admin')->group(function () {
-    Route::get('/barang', [BarangController::class, 'index'])->name('barang');
-    Route::get('/barang/update/{id}', [BarangController::class, 'update'])->name('barang.update');
-    Route::post('/barang', [BarangController::class, 'insert'])->name('barang.insert');
-    Route::put('/barang/{id}', [BarangController::class, 'doUpdate'])->name('barang.doUpdate');
-    Route::delete('/barang/{id}/{stat}', [BarangController::class, 'delete'])->name('barang.delete');
+    Route::prefix('barang')->group(function () {
+        Route::get('/', [BarangController::class, 'index'])->name('barang');
+        Route::get('/update/{id}', [BarangController::class, 'update'])->name('barang.update');
+        Route::post('', [BarangController::class, 'insert'])->name('barang.insert');
+        Route::put('/{id}', [BarangController::class, 'doUpdate'])->name('barang.doUpdate');
+        Route::delete('/{id}/{stat}', [BarangController::class, 'delete'])->name('barang.delete');
+    });
+    Route::prefix('kategori')->group(function () {
+        Route::get('/', [KategoriController::class, 'index'])->name('kategori');
+        Route::get('/update/{id}', [KategoriController::class, 'update'])->name('kategori.update');
+        Route::post('', [KategoriController::class, 'insert'])->name('kategori.insert');
+        Route::put('/{id}', [KategoriController::class, 'doUpdate'])->name('kategori.doUpdate');
+        Route::delete('/{id}/{stat}', [KategoriController::class, 'delete'])->name('kategori.delete');
+    });
 });

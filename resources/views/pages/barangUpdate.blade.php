@@ -11,20 +11,26 @@
         </div>
     @endif
     <div class="container">
-        <form action="/admin/barang/{{$barang->id_barang}}" method="post">
+        <form action="/admin/barang/{{$barang->id_barang}}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            <label for="">Nama Barang</label>
-            <input type="text" name="nama_barang" value="{{$barang->nama_barang}}" id="">
-            <br>
-            <label for="">Harga Barang</label>
-            <input type="number" name="harga_barang" id="" value="{{$barang->harga_barang}}">
-            <br>
-            <label for="">QTY Barang</label>
-            <input type="number" name="qty_barang" id="" value="{{$barang->qty_barang}}">
-
-            <br>
-            <input type="submit" value="Submit">
+            <div class="form-group">
+                <label for="nama_barang">Nama Barang:</label>
+                <input type="text" value="{{$barang->nama_barang}}" name="nama_barang" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="harga_barang">Harga Barang:</label>
+                <input type="text" value="{{$barang->harga_barang}}" name="harga_barang" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="qty_barang">Quantity Barang:</label>
+                <input type="text" value="{{$barang->qty_barang}}" name="qty_barang" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="gambar_barang">Image:</label>
+                <input type="file" value="{{$barang->gambar_barang}}" name="gambar_barang" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
     
