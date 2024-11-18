@@ -63,4 +63,8 @@ class SiteController extends Controller
         }
     }
 
+    function customer(){
+        return view('halamanCustomer');
+    }
+
 }

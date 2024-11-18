@@ -20,6 +20,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role'
     ];
 
     /**
@@ -43,5 +44,40 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function hasRole($role)
+    {
+        return $this->role === $role;
+    }
+
+    /**
+     * Check if the user is a super admin.
+     *
+     * @return bool
+     */
+    public function isSuperAdmin()
+    {
+        return $this->role === 0;
+    }
+
+    /**
+     * Check if the user is a product admin.
+     *
+     * @return bool
+     */
+    public function isProductAdmin()
+    {
+        return $this->role === 1;
+    }
+
+    /**
+     * Check if the user is a guest.
+     *
+     * @return bool
+     */
+    public function isCustomer()
+    {
+        return $this->role !== 0 && $this->role !== 1;
     }
 }
